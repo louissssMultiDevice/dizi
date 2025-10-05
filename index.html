@@ -1,24 +1,21 @@
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIZI Music Official - Terima Kasih</title>
+  <title>DIZI Music Official - Terima Kasih (Canggih)</title>
   <style>
-    /* Menggunakan font dari Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap');
-
-    /* Variabel Warna (Tema Biru-Ungu) */
     :root {
-      --color-primary: #3c0c7a; /* Ungu gelap untuk background */
-      --color-secondary: #6a1a7a; /* Ungu lebih terang */
-      --color-accent: #00bcd4; /* Biru terang/Cyan untuk highlight */
+      --color-primary: #3c0c7a;
+      --color-secondary: #6a1a7a;
+      --color-accent: #00bcd4;
       --color-text-light: #f0f0f0;
-      --color-text-dark: #333;
       --shadow-3d: 0 10px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.1);
     }
 
-    /* Styling Body dan Container */
     body {
       font-family: 'Poppins', sans-serif;
       margin: 0;
@@ -26,15 +23,14 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      /* Background Biru-Ungu Gradien */
       background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
       color: var(--color-text-light);
       overflow: hidden;
-      perspective: 1000px; /* Untuk efek 3D yang lebih baik */
+      perspective: 1000px;
     }
 
     .container {
-      background: rgba(40, 0, 80, 0.8); /* Background semi-transparan */
+      background: rgba(40, 0, 80, 0.8);
       padding: 40px;
       border-radius: 20px;
       box-shadow: var(--shadow-3d);
@@ -43,31 +39,19 @@
       width: 400px;
       position: relative;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px); /* Efek kaca (Glassmorphism) */
-      transform: rotateY(0deg); 
+      backdrop-filter: blur(10px);
       transition: transform 0.5s ease-out;
     }
 
-    .container:hover {
-      transform: rotateY(5deg); /* Efek 3D kecil saat di-hover */
-    }
-
-    /* --- Logo DIZI 3D Metalik --- */
     .logo {
       font-size: 4em;
       font-weight: 800;
       margin: 0 0 5px 0;
       letter-spacing: 5px;
-      /* Efek teks 3D Emas/Metalik */
       color: #ffd700; 
       text-shadow: 
-        0 1px 0 #ccc,
-        0 2px 0 #bbb,
-        0 4px 0 #aaa,
-        0 6px 1px rgba(0,0,0,.1),
-        0 0 5px rgba(0,0,0,.1),
-        0 3px 5px rgba(0,0,0,.2),
-        0 10px 10px rgba(0,0,0,.2),
+        0 1px 0 #ccc, 0 2px 0 #bbb, 0 4px 0 #aaa, 0 6px 1px rgba(0,0,0,.1),
+        0 0 5px rgba(0,0,0,.1), 0 3px 5px rgba(0,0,0,.2), 0 10px 10px rgba(0,0,0,.2),
         0 20px 20px rgba(0,0,0,.15);
     }
 
@@ -79,19 +63,16 @@
       text-shadow: 0 0 5px rgba(0, 188, 212, 0.8);
     }
 
-    /* --- Visualizer Canggih --- */
     #visualizer {
       width: 100%;
       height: 150px;
       border-radius: 10px;
       background: rgba(0, 0, 0, 0.6);
       margin-bottom: 30px;
-      /* Border dengan efek glow */
       box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5), 0 0 15px var(--color-accent);
       border: 2px solid var(--color-accent);
     }
 
-    /* --- Kontrol Tombol --- */
     .controls {
       display: flex;
       justify-content: center;
@@ -106,53 +87,51 @@
       border-radius: 50%;
       width: 60px;
       height: 60px;
-      font-size: 1.5em;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
-      /* Shadow tombol Neumorphism */
-      box-shadow: 
-        5px 5px 15px rgba(0, 0, 0, 0.5), 
-        -5px -5px 15px rgba(255, 255, 255, 0.1); 
+      display: flex; /* Untuk menengahkan ikon SVG */
+      justify-content: center;
+      align-items: center;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5), -5px -5px 15px rgba(255, 255, 255, 0.1); 
+    }
+
+    .btn svg {
+      fill: var(--color-text-light);
+      width: 28px;
+      height: 28px;
+      transition: fill 0.2s ease-in-out;
     }
 
     .btn:hover {
       background: var(--color-accent);
-      color: var(--color-text-dark);
-      transform: scale(1.05);
-      box-shadow: 0 0 20px var(--color-accent);
     }
 
+    .btn:hover svg {
+      fill: #333; /* Warna ikon berubah saat hover */
+    }
+
+    /* --- Tombol Play/Pause Realistis dan Animasi --- */
     .btn.play {
       width: 70px;
       height: 70px;
-      /* Gradien untuk kesan glossy/metalik */
       background: linear-gradient(145deg, #00e5ff, var(--color-accent)); 
-      /* Shadow yang lebih menonjol */
-      box-shadow: 
-        8px 8px 20px rgba(0, 0, 0, 0.6), 
-        -8px -8px 20px rgba(255, 255, 255, 0.15),
-        0 0 25px var(--color-accent); /* Glow */
+      box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.6), -8px -8px 20px rgba(255, 255, 255, 0.15), 0 0 25px var(--color-accent); 
+    }
+    
+    .btn.play svg {
+        fill: #333; /* Ikon Play/Pause selalu gelap untuk kontras */
     }
 
-    /* Efek tombol Play/Pause ditekan (realistis) */
     .btn.play.active {
-      /* Membalikkan shadow untuk efek "ditekan ke dalam" */
-      box-shadow: 
-        inset 5px 5px 10px rgba(0, 0, 0, 0.7),
-        inset -5px -5px 10px rgba(255, 255, 255, 0.15),
-        0 0 10px var(--color-accent); /* Glow lebih redup */
-      transform: scale(0.98); /* Sedikit menyusut saat ditekan */
+      box-shadow: inset 5px 5px 10px rgba(0, 0, 0, 0.7), inset -5px -5px 10px rgba(255, 255, 255, 0.15), 0 0 10px var(--color-accent);
+      transform: scale(0.98); 
     }
 
     .btn.play:hover {
       transform: scale(1.1);
-      box-shadow: 
-        8px 8px 25px rgba(0, 0, 0, 0.7), 
-        -8px -8px 25px rgba(255, 255, 255, 0.2),
-        0 0 35px #00e5ff; 
+      box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.7), -8px -8px 25px rgba(255, 255, 255, 0.2), 0 0 35px #00e5ff; 
     }
     
-    /* --- Lirik Mengambang (Kotak Teks) --- */
     .lyrics-box {
       background: rgba(0, 0, 0, 0.7);
       color: var(--color-accent);
@@ -166,13 +145,6 @@
       justify-content: center;
       text-shadow: 0 0 8px rgba(0, 188, 212, 0.8);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), inset 0 0 5px rgba(255, 255, 255, 0.1);
-      /* Animasi pergerakan kecil */
-      animation: pulse-lyrics 5s infinite alternate; 
-    }
-
-    @keyframes pulse-lyrics {
-      0% { transform: scale(1); opacity: 0.9; }
-      100% { transform: scale(1.01); opacity: 1; }
     }
   </style>
 </head>
@@ -186,26 +158,39 @@
     <audio id="audio" src="./public/Terimakasih.mp3" preload="auto"></audio>
 
     <div class="controls">
-      <button id="prev" class="btn" aria-label="Previous Track">⏮️</button>
-      <button id="play" class="btn play" aria-label="Play/Pause">▶️</button>
-      <button id="next" class="btn" aria-label="Next Track">⏭️</button>
+      <button id="prev" class="btn" aria-label="Previous Track">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 6L7 18M17 12L9 18L9 6L17 12Z"/>
+          </svg>
+      </button>
+      
+      <button id="play" class="btn play" aria-label="Play/Pause">
+          <svg id="play-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M6 18V6L18 12L6 18Z"/>
+          </svg>
+      </button>
+      
+      <button id="next" class="btn" aria-label="Next Track">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17 18L17 6M7 12L15 6L15 18L7 12Z"/>
+          </svg>
+      </button>
     </div>
 
     <div id="lyricsBox" class="lyrics-box" aria-live="polite">
-        “Sumpah, aku ingin bertemu kamu...”
+        “Siap dimainkan...”
     </div>
   </div>
 
 <script type="module">
-  // Pastikan browser mendukung AudioContext
   window.AudioContext = window.AudioContext || window.webkitAudioContext;
   
   const audio = document.getElementById("audio");
   const playBtn = document.getElementById("play");
+  const playIcon = document.getElementById("play-icon"); // Referensi SVG ikon
   const canvas = document.getElementById("visualizer");
   const ctx = canvas.getContext("2d");
   
-  // Menyesuaikan ukuran canvas
   canvas.width = canvas.offsetWidth;
   canvas.height = canvas.offsetHeight;
 
@@ -213,42 +198,92 @@
   const src = audioCtx.createMediaElementSource(audio);
   const analyser = audioCtx.createAnalyser();
   
-  // Konfigurasi Analyser
   analyser.fftSize = 256;
   src.connect(analyser);
   analyser.connect(audioCtx.destination);
   
-
   const bufferLength = analyser.frequencyBinCount;
   const dataArray = new Uint8Array(bufferLength);
 
-  // Fungsi Gambar Visualizer
+  // FUNGSI VISUALIZER DENGAN REAKSI LEBIH LIAR/DINAMIS
   function draw() {
     requestAnimationFrame(draw);
     analyser.getByteFrequencyData(dataArray);
     
-    // Clear canvas dengan sedikit transparansi untuk efek "trail"
-    ctx.fillStyle = "rgba(40, 0, 80, 0.5)"; 
+    ctx.fillStyle = "rgba(40, 0, 80, 0.4)"; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    const barWidth = (canvas.width / bufferLength) * 2.5;
+    const barWidth = (canvas.width / bufferLength) * 1.5;
     let x = 0;
     
     for (let i = 0; i < bufferLength; i++) {
-      const barHeight = dataArray[i] * 1.2;
+      const barHeight = dataArray[i] * 2.5; 
       
-      // Menggunakan warna gradien biru-ungu
       const hue = 260 + i * 1.2;
       ctx.fillStyle = `hsl(${hue}, 100%, 60%)`;
       
       ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-      x += barWidth + 1;
+      x += barWidth + 2; 
     }
   }
 
+  // DATA LIRIK DENGAN DURASI YANG DISESUAIKAN SECARA MANUAL PER BARIS
+  const lyrics = [
+    { text: "Sumpah, aku ingin bertemu kamu", duration: 4000 }, 
+    { text: "Ku ingin engkau ada di sampingku", duration: 3800 },
+    { text: "Ku ingin engkau tahu betapa rindunya hati kecilku", duration: 5000 },
+    { text: "Ku ingin engkau ada di setiap hari-hariku", duration: 4500 },
+    { text: "Kenapa? Mengapa? Oh kenapa? Mengapa begini?", duration: 3500 },
+    { text: "Perasaan rindu ini selalu menghampiri, uo-oo", duration: 4500 },
+    { text: "Selalu aku yang ada saat kau bercerita", duration: 4000 },
+    { text: "Mengapa kini kau pergi begitu saja? uoo-oooo", duration: 4700 },
+    { text: "Kenapa dia lagi dia lagi dia lagi yang aku cari?", duration: 4000 },
+    { text: "Kenapa dia lagi dia lagi yang aku cintai?", duration: 3800 },
+    { text: "Ku ingin bersamamu hingga nanti kita tua bersama", duration: 5000 },
+    { text: "Ku ingin kita bersama hingga selama-lamanya", duration: 4000 },
+    { text: "Semua indah pada waktunya", duration: 3000 },
+    { text: "Pada akhirnya Semua hanya angan-angan ku sajaaa", duration: 4500 },
+    { text: "kita takkan pernah bersama, uo-oo", duration: 4000 },
+    { text: "Sayangnya semua tak berjalan, sedangkan bertahan bukan satu pilihan", duration: 6000 },
+    { text: "Sayangnya mengapa kita berjumpa", duration: 3500 },
+    { text: "Padahal kita tak kan ke tujuan yang sama", duration: 4500 },
+    { text: "Pantaskah aku menyimpan rasa rindu yang begitu dalam?", duration: 5500 },
+    { text: "Lantas mengapa ku masih menunggumu hingga matahari tenggelam?", duration: 5000 },
+    { text: "Simpanlah kau dalam mimpi indahku", duration: 3500 },
+    { text: "Sebab kau tak datang dalam hidupku", duration: 3800 },
+    { text: "Lewatkah aku di sela pikiranmu?", duration: 3500 },
+    { text: "Aku rindu, sangat rindu, tapi tak bisa bertemu", duration: 4500 },
+    { text: "Terima kasih atas segala rasa", duration: 4000 },
+    { text: "Pada masa itu aku sangat bahagia", duration: 4500 },
+    { text: "Selalu tertawa, walau kini ku bertahan dengan air mata", duration: 5500 },
+    { text: "Mendengar cerita, kau kini bahagia", duration: 4000 },
+    { text: "Ku hanya bisa tersenyum mendengarnya", duration: 4000 },
+    { text: "Memendam kecewa, kau senang di sana", duration: 4500 },
+    { text: "Terima kasih…", duration: 5000 },
+    { text: "♪ Instrumental ♪", duration: 3000 },
+    { text: "Terima kasih...", duration: 3000 },
+    { text: "♪ Instrumental ♪", duration: 3000 },
+    { text: "Terima kasih...", duration: 5000 }
+  ];
+
+  let currentLyricIndex = 0;
+  let lyricTimer = null;
+
+  function updateLyrics() {
+    const lyric = lyrics[currentLyricIndex];
+    document.getElementById("lyricsBox").innerText = lyric.text;
+
+    currentLyricIndex = (currentLyricIndex + 1) % lyrics.length;
+    
+    lyricTimer = setTimeout(updateLyrics, lyric.duration);
+  }
+
+  // LOGIKA IKON PLAY/PAUSE
+  const playPath = "M6 18V6L18 12L6 18Z"; // Ikon Play (Segitiga)
+  const pausePath = "M6 18H9V6H6V18ZM15 6V18H18V6H15Z"; // Ikon Pause (Dua Garis)
+
   // Kontrol Play/Pause
   playBtn.onclick = async () => {
-    // Memastikan AudioContext dimulai saat interaksi pengguna
     if (audioCtx.state === 'suspended') {
       await audioCtx.resume();
     }
@@ -256,60 +291,29 @@
     if (audio.paused) {
       audio.play();
       playBtn.classList.add("active");
-      playBtn.textContent = "⏸️";
-      draw(); // Mulai visualizer
+      playIcon.innerHTML = `<path d="${pausePath}"/>`; // Ubah ke Ikon PAUSE
+      draw(); 
+      
+      // LOGIKA LIRIK
+      if (currentLyricIndex === 0 || lyricTimer === null) {
+        updateLyrics();
+      } else {
+         clearTimeout(lyricTimer);
+         updateLyrics(); 
+      }
+      
     } else {
       audio.pause();
       playBtn.classList.remove("active");
-      playBtn.textContent = "▶️";
+      playIcon.innerHTML = `<path d="${playPath}"/>`; // Ubah ke Ikon PLAY
+      
+      // HENTIKAN LIRIK SAAT PAUSE
+      if (lyricTimer) {
+        clearTimeout(lyricTimer);
+        lyricTimer = null; 
+      }
     }
   };
-
-  // --- Lirik Bergerak / Floating Lyrics ---
-  const lyrics = [
-    "Sumpah, aku ingin bertemu kamu",
-    "Ku ingin engkau ada di sampingku",
-    "Ku ingin engkau tahu betapa rindunya hati kecilku",
-    "Ku ingin engkau ada di setiap hari-hariku",
-    "Kenapa? Mengapa? Oh kenapa? Mengapa begini?",
-    "Perasaan rindu ini selalu menghampiri, uo-oo",
-    "Selalu aku yang ada saat kau bercerita",
-    "Mengapa kini kau pergi begitu saja? uoo-oooo",
-    "Kenapa dia lagi dia lagi dia lagi yang aku cari?",
-    "Kenapa dia lagi dia lagi yang aku cintai?",
-    "Ku ingin bersamamu hingga nanti kita tua bersama",
-    "Ku ingin kita bersama hingga selama-lamanya",
-    "Semua indah pada waktunya",
-    "Pada akhirnya Semua hanya angan-angan ku sajaaa",
-    "kita takkan pernah bersama, uo-oo",
-    "Sayangnya semua tak berjalan, sedangkan bertahan bukan satu pilihan",
-    "Sayangnya mengapa kita berjumpa",
-    "Padahal kita tak kan ke tujuan yang sama",
-    "Pantaskah aku menyimpan rasa rindu yang begitu dalam?",
-    "Lantas mengapa ku masih menunggumu hingga matahari tenggelam?",
-    "Simpanlah kau dalam mimpi indahku",
-    "Sebab kau tak datang dalam hidupku",
-    "Lewatkah aku di sela pikiranmu?",
-    "Aku rindu, sangat rindu, tapi tak bisa bertemu",
-    "Terima kasih atas segala rasa",
-    "Pada masa itu aku sangat bahagia",
-    "Selalu tertawa, walau kini ku bertahan dengan air mata",
-    "Mendengar cerita, kau kini bahagia",
-    "Ku hanya bisa tersenyum mendengarnya",
-    "Memendam kecewa, kau senang di sana",
-    "Terima kasih…",
-    "♪ Instrumental ♪",
-    "Terima kasih...",
-    "♪ Instrumental ♪",
-    "Terima kasih..."
-  ];
-  
-  let i = 0;
-  // Interval lirik diubah menjadi 5 detik
-  setInterval(() => {
-    document.getElementById("lyricsBox").innerText = lyrics[i];
-    i = (i + 1) % lyrics.length;
-  }, 5000); 
 </script>
 </body>
 </html>
