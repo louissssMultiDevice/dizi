@@ -23,17 +23,6 @@
 
     <div id="lyricsBox" class="lyrics">“Terima kasih...”</div>
 
-    <div class="comments">
-      <h2>💬 Komentar Fans</h2>
-      <form id="commentForm">
-        <input type="text" id="name" placeholder="Nama kamu..." required />
-        <textarea id="message" placeholder="Tulis komentar..." required></textarea>
-        <button type="submit">Kirim</button>
-      </form>
-      <div id="commentList"></div>
-    </div>
-  </div>
-
   <script type="module">
     const audio = document.getElementById("audio");
     const playBtn = document.getElementById("play");
@@ -124,38 +113,6 @@
       document.getElementById("lyricsBox").innerText = lyrics[i];
       i = (i + 1) % lyrics.length;
     }, 5000);
-
-    // Komentar sistem
-    const form = document.getElementById("commentForm");
-    const list = document.getElementById("commentList");
-
-    async function loadComments() {
-      const res = await fetch("/comments");
-      const data = await res.json();
-      list.innerHTML = data.map(c => `
-        <div class="comment">
-          <div class="avatar">${c.name.charAt(0).toUpperCase()}</div>
-          <div class="content">
-            <strong>${c.name}</strong>
-            <p>${c.message}</p>
-          </div>
-        </div>`).join("");
-    }
-
-    form.onsubmit = async e => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const message = document.getElementById("message").value;
-      await fetch("/comments", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, message })
-      });
-      form.reset();
-      loadComments();
-    };
-
-    loadComments();
   </script>
 </body>
 </html>
