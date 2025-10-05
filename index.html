@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIZI Music Official</title>
+  <link rel="stylesheet" href="public/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="logo">DIZI</h1>
+    <p class="subtitle">Grub Musik Official – “Terima Kasih”</p>
+
+    <canvas id="visualizer"></canvas>
+
+    <audio id="audio" src="public/Terimakasih.mp3"></audio>
+
+    <div class="controls">
+      <button id="prev" class="btn">⏮️</button>
+      <button id="play" class="btn play">▶️</button>
+      <button id="next" class="btn">⏭️</button>
+    </div>
+
+    <div id="lyricsBox" class="lyrics">“Sumpah, aku ingin bertemu kamu...”</div>
+
+    <div class="comments">
+      <h2>💬 Komentar Fans</h2>
+      <form id="commentForm">
+        <input type="text" id="name" placeholder="Nama kamu..." required />
+        <textarea id="message" placeholder="Tulis komentar..." required></textarea>
+        <button type="submit">Kirim</button>
+      </form>
+      <div id="commentList"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    const audio = document.getElementById("audio");
+    const playBtn = document.getElementById("play");
+    const canvas = document.getElementById("visualizer");
+    const ctx = canvas.getContext("2d");
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const audioCtx = new AudioContext();
+    const src = audioCtx.createMediaElementSource(audio);
+    const analyser = audioCtx.createAnalyser();
+    src.connect(analyser);
+    analyser.connect(audioCtx.destination);
+    analyser.fftSize = 256;
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function draw() {
+      requestAnimationFrame(draw);
+      analyser.getByteFrequencyData(dataArray);
+      ctx.fillStyle = "rgba(0,0,0,0.2)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      const barWidth = (canvas.width / bufferLength) * 2.5;
+      let x = 0;
+      for (let i = 0; i < bufferLength; i++) {
+        const barHeight = dataArray[i] * 1.2;
+        ctx.fillStyle = `hsl(${260 + i * 1.2}, 100%, 60%)`;
+        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+        x += barWidth + 1;
+      }
+    }
+
+    playBtn.onclick = async () => {
+      await audioCtx.resume();
+      if (audio.paused) {
+        audio.play();
+        playBtn.classList.add("active");
+        playBtn.textContent = "⏸️";
+        draw();
+      } else {
+        audio.pause();
+        playBtn.classList.remove("active");
+        playBtn.textContent = "▶️";
+      }
+    };
+
+    // Lirik bergerak
+    const lyrics = [
+      "Sumpah, aku ingin bertemu kamu...",
+      "Ku ingin engkau ada di sampingku...",
+      "Ku ingin engkau tahu betapa rindunya hatiku...",
+      "Ku ingin engkau ada di setiap hariku...",
+      "Mengapa kini kau pergi begitu saja..."
+    ];
+    let i = 0;
+    setInterval(() => {
+      document.getElementById("lyricsBox").innerText = lyrics[i];
+      i = (i + 1) % lyrics.length;
+    }, 5000);
+
+    // Komentar sistem
+    const form = document.getElementById("commentForm");
+    const list = document.getElementById("commentList");
+
+    async function loadComments() {
+      const res = await fetch("/comments");
+      const data = await res.json();
+      list.innerHTML = data.map(c => `
+        <div class="comment">
+          <div class="avatar">${c.name.charAt(0).toUpperCase()}</div>
+          <div class="content">
+            <strong>${c.name}</strong>
+            <p>${c.message}</p>
+          </div>
+        </div>`).join("");
+    }
+
+    form.onsubmit = async e => {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const message = document.getElementById("message").value;
+      await fetch("/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, message })
+      });
+      form.reset();
+      loadComments();
+    };
+
+    loadComments();
+  </script>
+</body>
+</html>
