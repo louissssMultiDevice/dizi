@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  background: radial-gradient(circle at center, #10002b, #000);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+.container {
+  text-align: center;
+  padding: 40px;
+}
+.logo {
+  font-size: 3em;
+  color: #a076ff;
+  text-shadow: 0 0 25px #9b5cff, 0 0 40px #00f0ff;
+}
+.subtitle { color: #bbb; }
+canvas { width: 100%; height: 200px; display: block; margin: 25px 0; }
+.btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 1.5em;
+  color: #fff;
+  margin: 0 10px;
+  transition: all .3s ease;
+}
+.btn:hover { transform: scale(1.2); box-shadow: 0 0 20px #9b5cff; }
+.btn.active {
+  background: linear-gradient(45deg, #9b5cff, #00f0ff);
+  box-shadow: 0 0 25px #9b5cff;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg) scale(1.1); }
+  100% { transform: rotate(360deg) scale(1.1); }
+}
+.lyrics {
+  margin-top: 25px;
+  font-size: 1.2em;
+  color: #fff;
+  text-shadow: 0 0 15px #9b5cff;
+  animation: float 6s ease-in-out infinite alternate;
+}
+@keyframes float { 0%{transform:translateY(0)}100%{transform:translateY(-8px)} }
+.comments {
+  margin-top: 40px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 25px;
+  backdrop-filter: blur(15px);
+}
+.comments form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.comments input, .comments textarea {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+.comments button {
+  background: linear-gradient(45deg, #9b5cff, #00f0ff);
+  border: none;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 15px;
+}
+.avatar {
+  background: linear-gradient(45deg, #9b5cff, #00f0ff);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.content p { margin: 5px 0 0; color: #ddd; }
